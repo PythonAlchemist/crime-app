@@ -1,0 +1,4 @@
+## Python Dependencies
+
+pandas==0.24.2
+falcon==1.4.1

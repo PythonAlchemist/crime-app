@@ -1,0 +1,7 @@
+.map-marker {
+  height: 10px;
+  width: 10px;
+  background-color: #B22222;
+  border-radius: 50%;
+  display: inline-block;
+}
