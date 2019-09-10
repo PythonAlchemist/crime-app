@@ -23,7 +23,7 @@ class ReactMap extends React.Component {
 
   async getResponse() {
 
-    var resp = await fetch('/crime_analytics/getData');
+    var resp = await fetch('/crime-analytics/api/getData');
     var data = await resp.json();
     console.log(data)
     this.setState({locs:data.data})

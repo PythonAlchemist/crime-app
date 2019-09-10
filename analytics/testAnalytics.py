@@ -17,10 +17,10 @@ class testAnalytics:
     def on_get(self, req, resp):
 
 
-        data = self.getLocations('~/Desktop/crimes-in-boston/crime.csv')
+        data = self.getLocations('crime.csv')
         print("hello from inside Python")
         resp.media = data
 
 
 api = falcon.API()
-api.add_route('/crime_analytics/API/runPython', testAnalytics())
+api.add_route('/crime-analytics/py-api/runPython', testAnalytics())

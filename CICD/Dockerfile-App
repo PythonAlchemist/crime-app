@@ -1,28 +1,30 @@
 FROM ubuntu:18.04
 
-WORKDIR /crime_analytics
-RUN mkdir /crime_analytics/backend
-RUN mkdir /crime_analytics/frontend
+WORKDIR /crime-analytics
+RUN mkdir /crime-analytics/backend
+RUN mkdir /crime-analytics/frontend
 
 RUN apt-get update
 RUN apt-get install -y nodejs
 RUN apt-get install -y npm
 RUN apt-get install -y nginx
 
-COPY ./backend/package*.json /crime_analytics/backend/
-COPY ./frontend/package*.json /crime_analytics/frontend/
+COPY ./backend/package*.json /crime-analytics/backend/
+COPY ./frontend/package*.json /crime-analytics/frontend/
 
-WORKDIR /crime_analytics/backend
+WORKDIR /crime-analytics/backend
 RUN npm install
 
-WORKDIR /crime_analytics/frontend
+WORKDIR /crime-analytics/frontend
 RUN npm install
 
-COPY ./backend /crime_analytics/backend
-COPY ./frontend /crime_analytics/frontend
+COPY ./backend /crime-analytics/backend
+COPY ./frontend /crime-analytics/frontend
 
-EXPOSE 3000
-EXPOSE 12059
-EXPOSE 13000
+RUN npm run build
+WORKDIR /crime-analytics/
+COPY ./CICD/nginx.conf /etc/nginx/nginx.conf
 
-CMD ((cd /crime_analytics/frontend/; npm run start) & (cd /crime_analytics/backend/; npm run start))
+EXPOSE 3000 12059
+
+CMD ((nginx -g "daemon off;") & (cd /crime-analytics/backend/; npm run start))

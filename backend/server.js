@@ -3,8 +3,8 @@ import fetch from 'node-fetch';
 require('dotenv').config({path:'.env'});
 const app = express();
 
-async function provideAnswer(req) {
-  var resp = await fetch(process.env.PYTHON_ROUTE + `/crime_analytics/API/runPython`, {
+async function getPoints(req) {
+  var resp = await fetch(process.env.PYTHON_ROUTE + `/crime-analytics/py-api/runPython`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -15,6 +15,6 @@ async function provideAnswer(req) {
   return {'data':data};
 }
 
-app.get('/crime_analytics/getData', async (req, res) => res.send(await provideAnswer(req)));
+app.get('/crime-analytics/api/getData', async (req, res) => res.send(await getPoints(req)));
 
 app.listen(process.env.PORT);

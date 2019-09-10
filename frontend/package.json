@@ -1,5 +1,5 @@
 {
-  "name": "crime_analytics",
+  "name": "crime-analytics",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,5 +31,5 @@
     ]
   },
   "proxy": "http://localhost:12059",
-  "homepage": "http://lxhdpedgeqa001:4048/react-express-template/master"
+  "homepage": "http://localhost:3000/crime-analytics/"
 }

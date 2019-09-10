@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 
-WORKDIR /crime_analytics
+WORKDIR /crime-analytics
 RUN mkdir /data
-RUN mkdir /crime_analytics/analytics
+RUN mkdir /crime-analytics/analytics
 
 RUN apt-get update
 RUN apt-get install -y python3
@@ -10,11 +10,11 @@ RUN apt-get -y install python3-pip
 RUN pip3 install gunicorn
 
 
-WORKDIR /crime_analytics/analytics
-COPY ./analytics/requirements.txt /crime_analytics/analytics/requirements.txt
+WORKDIR /crime-analytics/analytics
+COPY ./analytics/requirements.txt /crime-analytics/analytics/requirements.txt
 RUN pip3 install -r requirements.txt
 
-COPY ./analytics /crime_analytics/analytics
+COPY ./analytics /crime-analytics/analytics
 
 
 EXPOSE 13000
